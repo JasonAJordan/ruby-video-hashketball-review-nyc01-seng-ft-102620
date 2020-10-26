@@ -130,7 +130,6 @@ end
 # Write code here
 
 def num_points_scored(player_name) 
-  points = nil
   game_hash.each do |location, team_data|
     
     team_data.each do|attribute, data|
@@ -139,7 +138,7 @@ def num_points_scored(player_name)
         data.each do |player_data, stat|
             
             if player_data[:player_name] == player_name
-                points = player_data[:points]
+                return player_data[:points]
             end 
         end 
       end 
@@ -150,23 +149,19 @@ def num_points_scored(player_name)
 end 
 
 def shoe_size(player_name)
-  size = nil
   game_hash.each do |location, team_data|
-    
     team_data.each do|attribute, data|
       if attribute == :players
-
         data.each do |player_data, stat|
             
             if player_data[:player_name] == player_name
-                size = player_data[:shoe]
+                return player_data[:shoe]
             end 
         end 
       end 
         
     end 
   end 
-  size 
 end 
 
 def team_colors(team_name)
@@ -223,16 +218,12 @@ end
 def player_stats(player)
   
     game_hash.each do |location, team_data|
-      team_data.each do|attribute, data|
-          if attribute == :players
+      team_data[:players].each do|player_data|
 
-          data.each do |player_data, stat|
-            
             if player_data[:player_name] == player
               return player_data
             end 
-          end 
-        end 
+          
       end 
     end 
 
